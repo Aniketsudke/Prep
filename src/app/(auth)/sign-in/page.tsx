@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import {  FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const SignInForm = () => {
@@ -21,7 +21,7 @@ const SignInForm = () => {
   console.log(username, password);
   const router = useRouter();
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const result = await signIn("credentials", {

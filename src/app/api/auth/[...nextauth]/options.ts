@@ -3,6 +3,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcrypt";
 import prisma from "@/lib/prisma";
+import { Userprops } from "@/types";
+
+
 
 export const authOptions: NextAuthOptions = {
 
@@ -19,7 +22,12 @@ export const authOptions: NextAuthOptions = {
                 password:{label:'Password',type:'password'}
             },
             async authorize(credentials:any):Promise<any>{
+                console.log("credentials",credentials)
                 try {
+                    if (!credentials) {
+                        throw new Error("Credentials not provided");
+                      }
+                  
                     const user = await prisma.user.findFirst({
                         where: {
                           OR: [
@@ -44,9 +52,12 @@ export const authOptions: NextAuthOptions = {
                         throw new Error("Incorrect password");
                     }
                     return user;
-                } catch (error:any) {
-                    console.error("Error authorizing user:", error);
-                    throw new Error( error.message||"Error authorizing user");
+                } catch (error:unknown) {
+                    if (error instanceof Error) {
+                        console.error("Error authorizing user:", error);
+                        throw new Error( error.message  ||"Error authorizing user");
+
+                    }
                 }
             }
         })

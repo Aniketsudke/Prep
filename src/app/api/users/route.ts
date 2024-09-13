@@ -42,6 +42,9 @@ export async function POST(req: NextResponse) {
       },
     });
 
+    if(!newUser){
+      return NextResponse.json({ message: "User not created" });
+    }
     
 
     return NextResponse.json({ message: "User created" });
@@ -52,7 +55,7 @@ export async function POST(req: NextResponse) {
 }
 
 
-export async function GET(req: NextResponse) {
+export async function GET() {
   try {
     const users = await prisma.user.findMany();
     return NextResponse.json(users);

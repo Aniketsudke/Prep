@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
@@ -20,13 +20,18 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [msg, setMsg] = useState("");
-
-  const handleSignUp = async (e: any) => {
+  console.log(username, email, password, confirmpassword);
+  const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setMsg("");
+    if (!username || !email || !password || !confirmpassword) {
+      setMsg("All fields are required");
+      return;
+    }
     if (password !== confirmpassword) {
       setMsg("Passwords do not match");
       return;
-    } else {
+    } 
       try {
         const response = await fetch("/api/users", {
           method: "POST",
@@ -41,13 +46,14 @@ const SignUpForm = () => {
         });
 
         const data = await response.json();
+        setMsg(data.message);
         if (!response.ok) {
           throw new Error(data.message || "Something went wrong!");
         }
       } catch (error) {
         console.log(error);
       }
-    }
+    
   };
 
   return (
@@ -62,7 +68,7 @@ const SignUpForm = () => {
           </CardHeader>
           <CardContent>
             <div className="grid gap-4">
-              <form onClick={handleSignUp}>
+              <form onSubmit={handleSignUp}>
                 <div className="grid gap-2 mb-2">
                   <Label htmlFor="username">Username</Label>
                   <Input

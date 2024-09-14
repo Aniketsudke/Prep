@@ -4,7 +4,10 @@ import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcrypt";
 import prisma from "@/lib/prisma";
 import { Userprops } from "@/types";
-
+type CredentialsProps = {
+    email: string;
+    password: string;
+  };
 
 
 export const authOptions: NextAuthOptions = {
@@ -21,45 +24,38 @@ export const authOptions: NextAuthOptions = {
                 username:{label:'Email',type:'text'},
                 password:{label:'Password',type:'password'}
             },
-            async authorize(credentials:any):Promise<any>{
-                console.log("credentials",credentials)
-                try {
-                    if (!credentials) {
-                        throw new Error("Credentials not provided");
-                      }
-                  
-                    const user = await prisma.user.findFirst({
-                        where: {
-                          OR: [
-                            { email: credentials.email },
-                            { username: credentials.email },
-                          ],
-                        },
-                      });
-                    if (!user) {
-                        console.log("No user found");
-                        throw new Error("No user found");
+            async authorize(credentials) {
+                
+        
+                const user = await prisma.user.findUnique(
+                    {
+                    where: { email: credentials?.username}
                     }
+                    );
 
-                    if(!user.password){
-                        console.log("No password found");
-                        throw new Error("No password found");
-                    }
+                    console.log("user", user);
+        
+                const bcrypt = require("bcrypt");
+        
+                const passwordCorrect = await bcrypt.compare(
+                  credentials?.password,
+                  user?.password
+                );
+        
+                if (passwordCorrect) {
                     
-                    const isPassword = await bcrypt.compare(credentials.password, user.password);
-                    if (!isPassword) {
-                        console.log("Password is incorrect");
-                        throw new Error("Incorrect password");
-                    }
-                    return user;
-                } catch (error:unknown) {
-                    if (error instanceof Error) {
-                        console.error("Error authorizing user:", error);
-                        throw new Error( error.message  ||"Error authorizing user");
 
-                    }
+                  return {
+                    id: user?.id,
+                    email: user?.email,
+                    username: user?.username,
+                    image: user?.avatarUrl,
+                  };
                 }
-            }
+        
+                console.log("credentials", credentials);
+                return null;
+              },
         })
     ],
     callbacks:{

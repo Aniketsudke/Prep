@@ -3,11 +3,11 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcrypt";
 import prisma from "@/lib/prisma";
-import { Userprops } from "@/types";
-type CredentialsProps = {
-    email: string;
-    password: string;
-  };
+// import { Userprops } from "@/types";
+// type CredentialsProps = {
+//     email: string;
+//     password: string;
+//   };
 
 
 export const authOptions: NextAuthOptions = {
@@ -35,7 +35,7 @@ export const authOptions: NextAuthOptions = {
 
                     console.log("user", user);
         
-                const bcrypt = require("bcrypt");
+                
         
                 const passwordCorrect = await bcrypt.compare(
                   credentials?.password,

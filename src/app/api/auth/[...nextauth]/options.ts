@@ -8,6 +8,7 @@ import prisma from "@/lib/prisma";
 //     email: string;
 //     password: string;
 //   };
+  // "vercel-build": "prisma generate && next build"
 
 
 export const authOptions: NextAuthOptions = {

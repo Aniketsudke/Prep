@@ -22,40 +22,52 @@ export const authOptions: NextAuthOptions = {
             id:'credentials',
             name:'Credentials',
             credentials:{
-                username:{label:'Email',type:'text'},
+                email:{label:'Email',type:'text'},
                 password:{label:'Password',type:'password'}
             },
             async authorize(credentials) {
                 
+              if (!credentials?.email || !credentials?.password) {
+                console.log("Missing username or password");
+                return null;
+              }
         
-                const user = await prisma.user.findUnique(
-                    {
-                    where: { email: credentials?.username}
-                    }
-                    );
+              const user = await prisma.user.findFirst({
+                where: {
+                  OR: [
+                    { email: credentials.email },   
+                    { username: credentials.email }
+                  ],
+                },
+              });
 
-                    console.log("user", user);
+                    if(!user){
+                        console.log("User not found");
+                        return null;
+                    }
+
+                    
         
                 
         
                 const passwordCorrect = await bcrypt.compare(
-                  credentials?.password,
-                  user?.password
+                  credentials.password,
+                  user.password
                 );
         
-                if (passwordCorrect) {
-                    
+                if (!passwordCorrect) {
+                   console.log("Password incorrect");
+                  return null; 
 
-                  return {
-                    id: user?.id,
-                    email: user?.email,
-                    username: user?.username,
-                    image: user?.avatarUrl,
-                  };
                 }
+                return {
+                  id: user?.id,
+                  email: user?.email,
+                  username: user?.username,
+                  image: user?.avatarUrl,
+                };
         
-                console.log("credentials", credentials);
-                return null;
+                
               },
         })
     ],

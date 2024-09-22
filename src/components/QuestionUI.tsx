@@ -2,7 +2,6 @@
 import React, {  useEffect, useState } from 'react'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
-import { Shuffle } from 'lucide-react'
 import MarkdownRenderer from '@/lib/MarkdownRenderer'
 import { Input } from './ui/input';
 import Select from './Select';

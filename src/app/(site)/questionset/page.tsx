@@ -1,6 +1,5 @@
 "use client";
-import Link from "next/link";
-import {  Search, Shuffle, ListRestart } from "lucide-react";
+import {  Search, Shuffle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -28,16 +27,22 @@ import { QTableRow } from "@/components/questions/QTableRow";
 import { QTableRowSkeleton } from "@/components/questions/QTableRowSkeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { QuestionTableProps } from "@/types";
+
+
+
+
 
 const Questionset = () => {
   const [tabSubject, setTabSubject] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [topics, setTopics] = useState([]);
-  const [search, setSearch] = useState("");
+  // const [topics, setTopics] = useState([]);
+  // const [search, setSearch] = useState("");
 
   const handleDifficulty = (value: string[]) => {
     setDifficulty(value[0]);
   };
+  console.log(difficulty);
 
 
 
@@ -136,7 +141,7 @@ const Questionset = () => {
                         </TableHeader>
                         <TableBody>
                           {questions
-                            ? questions.map((question: any) => {
+                            ? questions.map((question: QuestionTableProps) => {
                                 return (
                                   <QTableRow
                                     key={question.id}

@@ -55,3 +55,13 @@ export interface Userprops {
     numericalAnswer?: number; // Numerical answer for Numerical type questions
     isTrueFalse?: boolean; // True/False answer for True/False type questions
   }
+
+  export interface QuestionTableProps {
+    id: string;
+    slug: string;
+    topic: string;
+    difficulty: string;
+    subject: string;
+    accuracy: number;
+    Status: string;
+  }

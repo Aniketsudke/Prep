@@ -1,5 +1,4 @@
 "use client";
-import prisma from '@/lib/prisma';
 import QuestionUI from '@/components/QuestionUI';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';

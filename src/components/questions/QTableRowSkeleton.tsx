@@ -1,9 +1,9 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { TableCell, TableRow } from "@/components/ui/table";
 
-export const QTableRowSkeleton = (key: any) => {
+export const QTableRowSkeleton = () => {
   return (
-    <TableRow key={key}>
+    <TableRow >
       <TableCell>
         <Skeleton className="h-6 w-6 rounded-full" />
       </TableCell>

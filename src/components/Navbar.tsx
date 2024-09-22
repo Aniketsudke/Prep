@@ -54,7 +54,7 @@ const Navbar = () => {
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left">
+        <SheetContent side="left" className="bg-white">
           <nav className="grid gap-6 text-lg font-medium">
             <Link
               href="#"

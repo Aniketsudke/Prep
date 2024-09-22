@@ -8,6 +8,7 @@ import Select from './Select';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 //Create True/False options for the question
 const TF = [
@@ -23,6 +24,7 @@ const TF = [
 
 const QuestionUI = ({question}) => {
   const { data: session } = useSession();
+  const router = useRouter();
   const { toast } = useToast()
   const [isMultiple, setIsMultiple] = useState(false);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -76,6 +78,12 @@ const QuestionUI = ({question}) => {
  
   const handleOnSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if(!session){
+      router.push('/sign-in')
+      return;
+    }
+
     const isCorrect = checkIfSelectedIsCorrect();
     const attemptData = {
       questionId: question.id, // Replace with actual question ID
@@ -86,6 +94,8 @@ const QuestionUI = ({question}) => {
     
    try{
     const response = await axios.post('/api/attempts', attemptData)
+    
+
     if(response && attemptData.isCorrect ){
       toast({
         title: "Correct Answer",

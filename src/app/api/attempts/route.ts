@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
+import { NextResponse } from "next/server";
 
 export async function POST(req:Request){
     const body = await req.json();
@@ -9,6 +10,9 @@ export async function POST(req:Request){
     try {
         const session = await getServerSession(authOptions);
         console.log(session);
+        if(!session){
+            return new Response("Unauthorized", { status: 401 });
+        }
         const attempt = await prisma.attempt.create({
             data:{
                 questionId,

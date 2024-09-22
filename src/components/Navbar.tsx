@@ -14,9 +14,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
+import { Skeleton } from "./ui/skeleton";
 
 const Navbar = () => {
-  const { data: session } = useSession();
+  const { data: session,status } = useSession();
   return (
     <header className="sticky z-50 top-0 flex w-full h-16 items-center gap-4 border-b bg-white px-4 md:px-6">
       <nav className="hidden  flex-col gap-8 text-lg font-medium md:flex md:flex-row md:items-center md:gap-8 md:text-sm lg:gap-10">
@@ -88,7 +89,7 @@ const Navbar = () => {
         </SheetContent>
       </Sheet>
       <div className="flex w-full items-center justify-end  md:ml-auto md:gap-2 lg:gap-4">
-        {!session ? (
+        {!session && status === "unauthenticated" ? (
           <div className="flex gap-1 md:gap-2">
             <Link href={"/sign-in"}>
               {" "}
@@ -103,7 +104,7 @@ const Navbar = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
-                {session?.user.image ? (
+                {status !== "loading" ? (session?.user.image ? (
                   <Image
                     src={session.user.image}
                     alt="user profile"
@@ -113,6 +114,8 @@ const Navbar = () => {
                   />
                 ) : (
                   <CircleUser className="h-7 w-7" />
+                )):(
+                  <Skeleton className="h-7 w-7 rounded-full" />
                 )}
                 <span className="sr-only">Toggle user menu</span>
               </Button>

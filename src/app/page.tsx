@@ -12,7 +12,7 @@ export default function Home() {
       session ? (
         <div>
           <h1>Welcome {session.user.email}</h1>
-          <Button onClick={() => signOut()}>Sign Out</Button>
+          <Button onClick={() => signOut({ callbackUrl: '/sign-in' })}>Sign Out</Button>
         </div>
       ) : (
         <div>

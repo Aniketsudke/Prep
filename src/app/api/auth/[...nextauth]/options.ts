@@ -64,7 +64,7 @@ export const authOptions: NextAuthOptions = {
                   id: user?.id,
                   email: user?.email,
                   username: user?.username,
-                  image: user?.avatarUrl,
+                  image: user?.avatar,
                 };
         
                 
@@ -90,7 +90,7 @@ export const authOptions: NextAuthOptions = {
                             data: {
                                 username: user.name!,
                                 email: user.email!,
-                                avatarUrl: user.image,
+                                avatar: user.image,
                                 provider: 'google',
                             },
                         });
@@ -115,31 +115,32 @@ export const authOptions: NextAuthOptions = {
 
         async jwt({ token, user }) {
             if(user){
-                token._id = user._id?.toString();
+                token.id = user.id.toString();
                 token.username = user.username;
                 token.email = user.email
                 token.image = user.image
-
-
+                token.isAdmin = user.isAdmin
             }
             return token
           },
         async session({ session, token }) {
             if(token){
-                session.user._id = token._id;
+                session.user.id = token.id;
                 session.user.username = token.username;
                 session.user.email = token.email;
                 session.user.image = token.picture;
+                session.user.isAdmin = token.isAdmin;
             }
 
             const userData = await prisma.user.findUnique({
                 where: { email: session.user.email! },
-              });;
+              });
             if(userData){
-                session.user._id = userData.id?.toString();
+                session.user.id = userData.id.toString();
                 session.user.username = userData.username || session.user.username;
-                session.user.image = userData.avatarUrl || session.user.image;
+                session.user.image = userData.avatar || session.user.image;
                 session.user.createdAt = userData.createdAt;
+                session.user.isAdmin = userData.isAdmin;
             }
             return session
           },

@@ -1,30 +1,83 @@
 
 
-generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["fullTextSearch"]
-}
+  generator client {
+    provider = "prisma-client-js"
+    previewFeatures = ["fullTextSearch"]
+  }
 
-datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-}
+  datasource db {
+    provider = "postgresql"
+    url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  }
 
-model User {
-  id              String       @id @default(uuid()) 
-  username        String       @unique
-  email           String       @unique
-  password        String?      
-  avatarUrl       String?      
-  provider        Provider
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime?     @updatedAt
-}
+  model User {
+    id              String       @id @default(uuid()) 
+    username        String       @unique
+    email           String       @unique
+    password        String?      
+    avatar          String?      
+    provider        Provider
+    attempts        Attempt[]
 
+    createdAt       DateTime     @default(now())
+    updatedAt       DateTime?    @updatedAt
+    isAdmin         Boolean      @default(false)
+  }
+  
+  enum Provider {
+    google
+    credentials
+  }
 
+  model Question {
+    id              String   @id @default(uuid())
+    slug            String   @unique  
+    type            QuestionType
+    content         String 
+    difficulty      String
+    topic           String
+    subject         String
+    class           String
+    tag             String? 
+    options         Option[] 
+    isnumerical     Float?  
+    isTrueFalse     Boolean? 
+    accuracy        Float?  @default(0)   
+    attempts        Attempt[]   
 
-enum Provider {
-  google
-  credentials
-}
+    createdAt       DateTime @default(now())
+
+  }
+
+  model Option {
+    id              String   @id @default(uuid())
+    content         String   
+    isCorrect       Boolean  @default(false)
+    questionId      String
+    question        Question @relation(fields: [questionId], references: [id])
+  }
+
+  enum QuestionType {
+    MCQ
+    NUM
+    TF
+  }
+  model Attempt {
+    // id              String   @id @default(uuid())
+    userId          String
+    questionId      String
+    isCorrect       Boolean  @default(false)
+    solvedAt        DateTime @default(now())
+    status          AttemptStatus @default(UNSOLVED)
+    user            User      @relation(fields: [userId], references: [id]) 
+    question        Question  @relation(fields: [questionId], references: [id])  
+
+    @@id([userId, questionId, solvedAt])
+  }
+
+  enum AttemptStatus {
+    SOLVED
+    UNSOLVED
+    ATTEMPTED
+  }

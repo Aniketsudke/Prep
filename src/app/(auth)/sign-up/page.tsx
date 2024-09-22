@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
 import { FormEvent, useState } from "react";
+import { redirect } from "next/navigation";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
@@ -44,6 +45,10 @@ const SignUpForm = () => {
             password,
           }),
         });
+
+        if(response){
+          redirect('/')
+        }
 
         const data = await response.json();
         setMsg(data.message);

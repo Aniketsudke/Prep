@@ -6,9 +6,9 @@ const Footer = () => {
     <footer className="border-t bg-background px-4 py-6 md:px-6">
       <div className="container mx-auto flex flex-col items-center gap-4 md:flex-row md:justify-between">
         <div className="text-center md:text-left">
-          <h2 className="text-lg font-semibold">Company Name</h2>
+          <h2 className="text-lg font-semibold">Prep Arena</h2>
           <p className="text-sm text-muted-foreground">
-            ©{new Date().getFullYear()} Company Name. All rights reserved.
+            ©{new Date().getFullYear()} Prep Arena. All rights reserved.
           </p>
         </div>
 

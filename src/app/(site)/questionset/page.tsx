@@ -135,7 +135,7 @@ const Questionset = () => {
                             <TableHead>Title</TableHead>
                             <TableHead>Accurcy</TableHead>
                             <TableHead>Difficulty</TableHead>
-                            <TableHead>Subject</TableHead>
+                            <TableHead className="hidden md:table-cell">Subject</TableHead>
                             
                           </TableRow>
                         </TableHeader>

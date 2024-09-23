@@ -26,12 +26,7 @@ const QuestionPage = ({ params }: { params: { slug: string } }) => {
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center items-center p-2 bg-white border-b-2">
-        <Button size="sm" className="h-9 gap-1">
-          <Shuffle className="h-4 w-4" />
-          <span>Pick random</span>
-        </Button>
-      </div>
+      
       {
         isLoading ? (
           <QuestionUISkeleton />
@@ -40,7 +35,12 @@ const QuestionPage = ({ params }: { params: { slug: string } }) => {
         )
 
       }
-      
+      <div className="flex flex-wrap justify-center items-center p-2 bg-white border-b-2">
+        <Button size="sm" className="h-9 gap-1">
+          <Shuffle className="h-4 w-4" />
+          <span>Pick random</span>
+        </Button>
+      </div>
     </div>
   );
 };

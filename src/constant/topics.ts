@@ -5,6 +5,7 @@ export const topics = [
     "Work, Energy, and Power",
     "Motion of System of Particles and Rigid Body",
     "Gravitation",
+    "Circular Motion",
     "Properties of Bulk Matter",
     "Thermodynamics",
     "Behaviour of Perfect Gas and Kinetic Theory",
@@ -58,4 +59,6 @@ export const topics = [
     "Biology and Human Welfare",
     "Biotechnology and Its Applications",
     "Ecology and Environment",
+    "Porifera",
+    "Human Anatomy and Physiology",
   ];

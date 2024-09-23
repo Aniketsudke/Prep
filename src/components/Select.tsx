@@ -25,14 +25,14 @@ const Select: React.FC<SelectProps> = ({ options, selectedOption, selectedOption
         return (
           <div 
             key={index} 
-            className={`flex items-center m-2 p-3 rounded-md cursor-pointer ${isSelected ? 'bg-yellow-500' : 'bg-muted hover:bg-yellow-100'}`}
+            className={`flex items-center m-2 p-3   rounded-md cursor-pointer ${isSelected ? 'bg-yellow-500' : 'bg-muted hover:bg-yellow-100'}`}
             onClick={() => handleOptionChange(index)}  // Call the handler when clicked
           >
             <div className="inline-flex items-center pr-2">
               <label className="flex items-center cursor-pointer relative">
                 <input 
                   type="checkbox" 
-                  className={`peer h-5 w-5 cursor-pointer transition-all appearance-none rounded ${isSelected ? 'bg-white border-yellow-700' : 'border-black'} checked:bg-white checked:border-yellow-800`} 
+                  className={`peer  h-5 w-5 cursor-pointer transition-all appearance-none rounded ${isSelected ? 'bg-white border-yellow-700' : 'border-black'} checked:bg-white checked:border-yellow-800`} 
                   name={option.content}
                   value={option.content}
                   checked={isSelected}  

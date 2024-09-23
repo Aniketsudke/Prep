@@ -181,7 +181,7 @@ const QuestionUI = ({question}) => {
             {/* MCQ */}
             { question.type === "MCQ" && (
               <form onSubmit={handleOnSubmit}>
-              <h1 className="text-2xl font-bold mb-4">Options</h1>
+              <h1 className="md:text-2xl font-bold mb-4">Options</h1>
               <div className="flex flex-col noselect">
                   <Select
                     options={question.options}
@@ -200,7 +200,7 @@ const QuestionUI = ({question}) => {
             {
               question.type === "NUM" && (
                 <form  onSubmit={handleOnSubmit}>
-                <h1 className="text-2xl font-bold mb-4">Numerical </h1>
+                <h1 className="md:text-2xl font-bold mb-4">Numerical </h1>
                 <Input type="number" step={0.01} placeholder="Enter your answer"  
                 className='p-3 m-2  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
                 onChange={(e) => setSelectedOption(parseFloat(e.target.value))}
@@ -214,7 +214,7 @@ const QuestionUI = ({question}) => {
             {
               question.type === "TF" && (
                 <form onSubmit={handleOnSubmit}>
-                <h1 className="text-2xl font-bold mb-4">True/False </h1>
+                <h1 className="md:text-2xl font-bold mb-4">True/False </h1>
                 <div className="flex flex-col space-y-2">
                   <Select
                     options={TF}

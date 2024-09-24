@@ -62,6 +62,7 @@ export interface Userprops {
     topic: string;
     difficulty: string;
     subject: string;
+    class: string;
     accuracy: number;
     Status: string;
   }

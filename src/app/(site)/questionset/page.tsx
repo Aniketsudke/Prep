@@ -36,13 +36,25 @@ import { QuestionTableProps } from "@/types";
 const Questionset = () => {
   const [tabSubject, setTabSubject] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  // const [topics, setTopics] = useState([]);
-  // const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
 
   const handleDifficulty = (value: string[]) => {
+    if(value[0] === "Default"){
+      setDifficulty("");
+      return;
+    }
     setDifficulty(value[0]);
   };
-  console.log(difficulty);
+  const handleStatus = (value: string[]) => {
+    if(value[0] === "Default"){
+      setStatus("");
+      return;
+    }
+    setStatus(value[0]);
+  };
+
+  console.log(tabSubject, difficulty, search, status);
 
 
 
@@ -112,8 +124,14 @@ const Questionset = () => {
                     <SelectFilter
                       width={"[100px]"}
                       placeholder="Difficulty"
-                      selectName={["Easy", "Medium", "Hard"]}
+                      selectName={["Default","Easy", "Medium", "Hard"]}
                       onChange={handleDifficulty}
+                    />
+                    <SelectFilter
+                      width={"[100px]"}
+                      placeholder="Status"
+                      selectName={["Default","Solved", "Unsolved", "Attempted"]}
+                      onChange={handleStatus}
                     />
                     
                     
@@ -132,9 +150,10 @@ const Questionset = () => {
                         <TableHeader>
                           <TableRow>
                             <TableHead>Status</TableHead>
-                            <TableHead>Title</TableHead>
-                            <TableHead>Accurcy</TableHead>
+                            <TableHead className="hidden md:table-cell">Class</TableHead>
                             <TableHead>Difficulty</TableHead>
+                            <TableHead>Topic</TableHead>
+                            <TableHead>Accurcy</TableHead>
                             <TableHead className="hidden md:table-cell">Subject</TableHead>
                             
                           </TableRow>

@@ -14,15 +14,7 @@ export const QTableRow = ({ problem }: { problem: QuestionTableProps }) => {
         }
         {/* <CircleCheck color="green" /> */}
       </TableCell>
-      <TableCell className="font-medium">
-        <Link
-          href={`/questions/${problem.slug}`}
-          className="hover:text-yellow-600"
-        >
-          {problem.topic}
-        </Link>
-      </TableCell>
-      <TableCell >{problem.accuracy}%</TableCell>
+      <TableCell className="hidden md:table-cell"    >{problem.class}</TableCell>
       <TableCell>
         <Badge
           variant={
@@ -41,6 +33,16 @@ export const QTableRow = ({ problem }: { problem: QuestionTableProps }) => {
           {problem.difficulty}
         </Badge>
       </TableCell>
+      <TableCell className="font-medium">
+        <Link
+          href={`/questions/${problem.slug}`}
+          className="hover:text-yellow-600"
+        >
+          {`${problem.topic}`}
+        </Link>
+      </TableCell>
+      <TableCell >{problem.accuracy}%</TableCell>
+      
       <TableCell className="hidden md:table-cell">{problem.subject}</TableCell>
       
     </TableRow>

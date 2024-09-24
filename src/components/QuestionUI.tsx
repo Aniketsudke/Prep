@@ -91,30 +91,26 @@ const QuestionUI = ({question}) => {
       isCorrect: isCorrect,
       status: isCorrect ? 'SOLVED' : 'UNSOLVED', // Optionally, you can store status
     };
-    
-   try{
-    const response = await axios.post('/api/attempts', attemptData)
-    
-
-    if(response && attemptData.isCorrect ){
+    if(isCorrect){
       toast({
         title: "Correct Answer",
         description: "Your answer was correct.",
       });
-      console.log("Correct Answer")
     }
     else{
       toast({
         title: "Incorrect Answer",
         description: "Try Next Time!",
         variant: "destructive",
-      });
-      
-      console.log("Incorrect Answer")
-    }
+    });
+  }
+    
+   try{
 
-   }
-    catch(error){
+    const response = await axios.post('/api/attempts', attemptData)
+    console.log("Response", response)
+       }
+  catch(error){
       console.log("Error", error)
     }
 
@@ -126,10 +122,10 @@ const QuestionUI = ({question}) => {
   
   
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100" id="fullscreen">
+    <div className="min-h-[calc(100vh-120px)] flex flex-col bg-gray-100" id="fullscreen">
       {/* Navbar */}
       
-      <div className="flex flex-wrap md:flex-row flex-1 p-4 bg-white shadow-lg rounded-lg overflow-hidden  ">
+      <div className="flex flex-wrap md:flex-row flex-1 p-4 bg-white  rounded-lg overflow-hidden  ">
         {/* Left side: Question */}
         {/* <form action=""></form> */}
         <div className="w-full md:w-1/2 p-6 border-b md:border-b-0 md:border-r ">
@@ -177,7 +173,7 @@ const QuestionUI = ({question}) => {
         
 
         {/* Right side: Options */}
-        <div className="w-full md:w-1/2 p-6">
+        <div className="w-full md:w-1/2 p-6 ">
             {/* MCQ */}
             { question.type === "MCQ" && (
               <form onSubmit={handleOnSubmit}>
@@ -192,7 +188,7 @@ const QuestionUI = ({question}) => {
                   />
               </div>
               
-              <Button  className="mt-4" type="submit">
+              <Button  className="mt-4 " type="submit">
                 Submit
               </Button>
             </form>)
@@ -205,7 +201,7 @@ const QuestionUI = ({question}) => {
                 className='p-3 m-2  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
                 onChange={(e) => setSelectedOption(parseFloat(e.target.value))}
                 />
-                <Button  className="mt-4" type="submit">
+                <Button  className="mt-4 " type="submit">
                 Submit
                 </Button>
                 </form>

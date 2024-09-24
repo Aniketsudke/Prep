@@ -19,10 +19,7 @@ const QuestionPage = ({ params }: { params: { slug: string } }) => {
     },
   });
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-  console.log("User",question);
+  
 
   return (
     <div>
@@ -36,7 +33,7 @@ const QuestionPage = ({ params }: { params: { slug: string } }) => {
 
       }
       <div className="flex flex-wrap justify-center items-center p-2 bg-white border-b-2">
-        <Button size="sm" className="h-9 gap-1">
+        <Button size="sm" className="h-9 w-40 gap-1">
           <Shuffle className="h-4 w-4" />
           <span>Pick random</span>
         </Button>

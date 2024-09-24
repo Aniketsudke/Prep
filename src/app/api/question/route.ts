@@ -28,6 +28,7 @@ export async function GET() {
             difficulty: question.difficulty,
             topic: question.topic,
             subject: question.subject,
+            class: question.class,
             accuracy: question.accuracy,
             Status: attemptStatus,
           };

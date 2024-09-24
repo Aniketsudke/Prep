@@ -43,7 +43,8 @@
     options         Option[] 
     isnumerical     Float?  
     isTrueFalse     Boolean? 
-    accuracy        Float?  @default(0)   
+    accuracy        Float?  @default(0) 
+      
     attempts        Attempt[]   
 
     createdAt       DateTime @default(now())
@@ -64,18 +65,18 @@
     TF
   }
   model Attempt {
-    // id              String   @id @default(uuid())
     userId          String
     questionId      String
     isCorrect       Boolean  @default(false)
     solvedAt        DateTime @default(now())
     status          AttemptStatus @default(UNSOLVED)
-    user            User      @relation(fields: [userId], references: [id]) 
-    question        Question  @relation(fields: [questionId], references: [id])  
+    user            User      @relation(fields: [userId], references: [id])  //onDelete: Cascade ADD THIS
+    question        Question  @relation(fields: [questionId], references: [id])  //onDelete: Cascade ADD THIS
 
     @@id([userId, questionId, solvedAt])
   }
 
+// change this names in lowercase
   enum AttemptStatus {
     SOLVED
     UNSOLVED

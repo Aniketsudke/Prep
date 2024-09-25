@@ -28,9 +28,8 @@ import { QuestionTableProps } from "@/types";
 const Questionset = () => {
   const [tabSubject, setTabSubject] = useState( "");
   const [difficulty, setDifficulty] = useState("");
-  const [search, setSearch] = useState( "");
   const [status, setStatus] = useState("");
-  setSearch("e");
+ 
 
   
 
@@ -53,7 +52,7 @@ const Questionset = () => {
     setStatus(value[0]);
   };
 
-  console.log(tabSubject, difficulty, search, status);
+  console.log(tabSubject, difficulty, status);
 
 
 

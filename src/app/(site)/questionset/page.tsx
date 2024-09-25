@@ -41,6 +41,8 @@ const Questionset = () => {
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const pageSize = 10;
 
+  setSearch("e");
+
   const updateUrlParams = (key: string, value: string | undefined) => {
     const newParams = new URLSearchParams(searchParams.toString());
 

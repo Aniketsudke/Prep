@@ -21,7 +21,7 @@ const UserProfile = ({ params }: { params: { username: string } }) => {
       return data;
     },
   });
-  console.log("User",user);
+  console.log("User",user,isLoading);
 
 
   return (

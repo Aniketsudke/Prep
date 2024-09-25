@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -15,8 +16,10 @@ export default function BasicProfile() {
 
       <div className="p-5">
         <div className="flex">
-          <img
+          <Image
             src={"/Profile_image.png"}
+            width={80}
+            height={80}
             alt="Profile"
             className="h-20 rounded-md"
           />

@@ -13,14 +13,14 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import SelectFilter from "@/components/SelectFilter";
-import {  useCallback, useState } from "react";
+import {   useState } from "react";
 // import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { QTableRow } from "@/components/questions/QTableRow"; 
 import { QTableRowSkeleton } from "@/components/questions/QTableRowSkeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { QuestionTableProps } from "@/types";
-import { Pagination } from "@/components/ui/pagination";
+// import { Pagination } from "@/components/ui/pagination";
 import PaginationCom from "@/components/PaginationCom";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -53,25 +53,27 @@ const Questionset = () => {
     router.replace(`${pathname}?${newParams.toString()}`);
   };
 
-  const handleFilterChange = (
-    value: string[],
-    setter: React.Dispatch<React.SetStateAction<string>>,
-    paramName: string
-  ) => {
-    if (value[0] === "Default") {
-      setter(""); // Clear the state
-      updateUrlParams(paramName, undefined); // Remove from URL
-      return;
-    }
-    setter(value[0]); // Set the state to the new value
-    updateUrlParams(paramName, value[0]); // Update the URL with the new value
-  };
+  // const handleFilterChange = (
+  //   value: string[],
+  //   setter: React.Dispatch<React.SetStateAction<string>>,
+  //   paramName: string
+  // ) => {
+  //   if (value[0] === "Default") {
+  //     setter(""); // Clear the state
+  //     updateUrlParams(paramName, undefined); // Remove from URL
+  //     return;
+  //   }
+  //   setter(value[0]); // Set the state to the new value
+  //   updateUrlParams(paramName, value[0]); // Update the URL with the new value
+  // };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearch(value);
-    // debouncedSearch(value);
-  };
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value;
+  //   setSearch(value);
+  //   // debouncedSearch(value);
+  // };
+
+  
 
   const handleDifficulty = (value: string[]) => {
     if(value[0] === "Default"){

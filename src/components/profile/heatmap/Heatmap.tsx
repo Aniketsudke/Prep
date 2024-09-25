@@ -36,7 +36,7 @@ function Heatmap() {
         startDate={shiftDate(today, -daysToShow)}
         endDate={today}
         values={data}
-        classForValue={(value: any) => {
+        classForValue={(value:{date:string,count:number}) => {
           if (!value) {
             return "color-empty";
           }

@@ -20,60 +20,21 @@ import { QTableRowSkeleton } from "@/components/questions/QTableRowSkeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { QuestionTableProps } from "@/types";
-// import { Pagination } from "@/components/ui/pagination";
-import PaginationCom from "@/components/PaginationCom";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 
 
 
 
 const Questionset = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-
-
-  const [tabSubject, setTabSubject] = useState(searchParams.get('subject') || "");
-  const [difficulty, setDifficulty] = useState(searchParams.get('difficulty') || "");
-  const [search, setSearch] = useState(searchParams.get('q') || "");
-  const [status, setStatus] = useState(searchParams.get('status') || "");
-  const currentPage = parseInt(searchParams.get('page') || '1', 10);
-  const pageSize = 10;
-
+  const [tabSubject, setTabSubject] = useState( "");
+  const [difficulty, setDifficulty] = useState("");
+  const [search, setSearch] = useState( "");
+  const [status, setStatus] = useState("");
   setSearch("e");
 
-  const updateUrlParams = (key: string, value: string | undefined) => {
-    const newParams = new URLSearchParams(searchParams.toString());
+  
 
-    if (value) {
-      newParams.set(key, value);
-    } else {
-      newParams.delete(key);
-    }
-
-    router.replace(`${pathname}?${newParams.toString()}`);
-  };
-
-  // const handleFilterChange = (
-  //   value: string[],
-  //   setter: React.Dispatch<React.SetStateAction<string>>,
-  //   paramName: string
-  // ) => {
-  //   if (value[0] === "Default") {
-  //     setter(""); // Clear the state
-  //     updateUrlParams(paramName, undefined); // Remove from URL
-  //     return;
-  //   }
-  //   setter(value[0]); // Set the state to the new value
-  //   updateUrlParams(paramName, value[0]); // Update the URL with the new value
-  // };
-
-  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = e.target.value;
-  //   setSearch(value);
-  //   // debouncedSearch(value);
-  // };
+ 
 
   
 
@@ -213,9 +174,7 @@ const Questionset = () => {
                       </Table>
                     </CardContent>
                     <CardFooter className="flex flex-1">
-                      <PaginationCom currentPage={currentPage}
-        totalPages={Math.ceil(questions?.total / pageSize)}
-        onPageChange={(page) => updateUrlParams('page', page.toString())} /> 
+                      <h2>Paginations</h2>
                     </CardFooter>
                   </Card>
                 </TabsContent>

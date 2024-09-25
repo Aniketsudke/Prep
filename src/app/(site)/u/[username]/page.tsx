@@ -36,7 +36,7 @@ const UserProfile = ({ params }: { params: { username: string } }) => {
           <SubjectStats
             subject="Physics"
             color="blue"
-            totalQuestions={1742}
+            totalQuestions={243}
             solvedQuestions={243}
           />
           <SubjectStats

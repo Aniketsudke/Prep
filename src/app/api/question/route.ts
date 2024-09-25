@@ -3,11 +3,10 @@ import { NextResponse } from "next/server";
 import { ContributeFormProps } from "@/types";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
+import { NextApiRequest } from "next";
 
-export async function GET() {
+export async function GET(req:NextApiRequest) {
   const session = await getServerSession(authOptions);
-  
-  
     try {
         const questions = await prisma.question.findMany({
           include:{
@@ -17,6 +16,7 @@ export async function GET() {
               }
             }
           }
+          
         });
         const questionSet = questions.map((question) => {
           const hasAttempt = question.attempts.length > 0;

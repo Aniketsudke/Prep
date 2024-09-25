@@ -11,33 +11,67 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+
 import SelectFilter from "@/components/SelectFilter";
-import {  useState } from "react";
+import {  useCallback, useState } from "react";
 // import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { QTableRow } from "@/components/questions/QTableRow"; 
 import { QTableRowSkeleton } from "@/components/questions/QTableRowSkeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { QuestionTableProps } from "@/types";
+import { Pagination } from "@/components/ui/pagination";
+import PaginationCom from "@/components/PaginationCom";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 
 
 
 
 const Questionset = () => {
-  const [tabSubject, setTabSubject] = useState("");
-  const [difficulty, setDifficulty] = useState("");
-  const [search, setSearch] = useState("");
-  const [status, setStatus] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+
+  const [tabSubject, setTabSubject] = useState(searchParams.get('subject') || "");
+  const [difficulty, setDifficulty] = useState(searchParams.get('difficulty') || "");
+  const [search, setSearch] = useState(searchParams.get('q') || "");
+  const [status, setStatus] = useState(searchParams.get('status') || "");
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const pageSize = 10;
+
+  const updateUrlParams = (key: string, value: string | undefined) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+
+    if (value) {
+      newParams.set(key, value);
+    } else {
+      newParams.delete(key);
+    }
+
+    router.replace(`${pathname}?${newParams.toString()}`);
+  };
+
+  const handleFilterChange = (
+    value: string[],
+    setter: React.Dispatch<React.SetStateAction<string>>,
+    paramName: string
+  ) => {
+    if (value[0] === "Default") {
+      setter(""); // Clear the state
+      updateUrlParams(paramName, undefined); // Remove from URL
+      return;
+    }
+    setter(value[0]); // Set the state to the new value
+    updateUrlParams(paramName, value[0]); // Update the URL with the new value
+  };
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearch(value);
+    // debouncedSearch(value);
+  };
 
   const handleDifficulty = (value: string[]) => {
     if(value[0] === "Default"){
@@ -73,7 +107,7 @@ const Questionset = () => {
         <>
           {/* <div className="flex min-h-screen w-full flex-col bg-muted/40"> */}
     
-          <div className="flex flex-col sm:gap-4 sm:py-4 mx-1  ">
+          <div className="flex flex-col sm:gap-2 sm:py-4 mx-1   ">
             {/* <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 "> */}
             <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 ">
               <Tabs defaultValue="all">
@@ -144,7 +178,7 @@ const Questionset = () => {
                   </div>
                 </div>
                 <TabsContent value={tabSubject || "all"}>
-                  <Card x-chunk="dashboard-06-chunk-0">
+                  <Card x-chunk="dashboard-06-chunk-0" >
                     <CardContent>
                       <Table>
                         <TableHeader>
@@ -175,22 +209,9 @@ const Questionset = () => {
                       </Table>
                     </CardContent>
                     <CardFooter className="flex flex-1">
-                      <Pagination>
-                        <PaginationContent>
-                          <PaginationItem>
-                            <PaginationPrevious />
-                          </PaginationItem>
-                          <PaginationItem>
-                            <PaginationLink href="#">1</PaginationLink>
-                          </PaginationItem>
-                          <PaginationItem>
-                            <PaginationEllipsis />
-                          </PaginationItem>
-                          <PaginationItem>
-                            <PaginationNext href="#" />
-                          </PaginationItem>
-                        </PaginationContent>
-                      </Pagination>
+                      <PaginationCom currentPage={currentPage}
+        totalPages={Math.ceil(questions?.total / pageSize)}
+        onPageChange={(page) => updateUrlParams('page', page.toString())} /> 
                     </CardFooter>
                   </Card>
                 </TabsContent>

@@ -7,7 +7,7 @@ import Link from "next/link";
 export const QTableRow = ({ problem }: { problem: QuestionTableProps }) => {
   console.log(problem)
   return (
-    <TableRow key={problem.id}>
+    <TableRow key={problem.id} className="sm:text-sm">
       <TableCell>
         {
           problem.Status === "UNSOLVED" ? <Circle /> : <CircleCheck color="green" />
@@ -33,10 +33,10 @@ export const QTableRow = ({ problem }: { problem: QuestionTableProps }) => {
           {problem.difficulty}
         </Badge>
       </TableCell>
-      <TableCell className="font-medium">
+      <TableCell className="font-medium ">
         <Link
           href={`/questions/${problem.slug}`}
-          className="hover:text-yellow-600"
+          className="hover:text-yellow-600 "
         >
           {`${problem.topic}`}
         </Link>

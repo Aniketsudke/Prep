@@ -16,6 +16,11 @@ export async function GET(){
             }
           }
         });
+        if(questions.length === 0){
+            return new Response("No questions found", { status: 404 });
+        }
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        return new Response(JSON.stringify(questions[randomIndex]), { status: 200 });
         
         
     } catch (error) {

@@ -7,6 +7,23 @@ import { authOptions } from "../auth/[...nextauth]/options";
 export async function GET() {
   const session = await getServerSession(authOptions);
     try {
+
+      if(!session){
+        const questions = await prisma.question.findMany();
+        const questionSet = questions.map((question) => {
+          return {
+            id: question.id,
+            slug: question.slug,
+            difficulty: question.difficulty,
+            topic: question.topic,
+            subject: question.subject,
+            class: question.class,
+            accuracy: question.accuracy,
+            Status: 'UNSOLVED',
+          };
+        });
+        return Response.json(questionSet, { status: 200 });
+      }
         const questions = await prisma.question.findMany({
           include:{
             attempts: {

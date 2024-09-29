@@ -6,10 +6,12 @@ export interface Userprops {
     username: string;
     email: string;
     password?: string;
-    avatarUrl?: string;
+    avatar?: string;
     provider: string;
+    attempts: Attempt[];
     createdAt: Date;
     updatedAt?: Date;
+    isAdmin: boolean;
   }
 
   export interface QuestionProps {
@@ -39,7 +41,7 @@ export interface Userprops {
     userId: string; // ID of the user who attempted the question
     questionId: string; // ID of the question being attempted
     isCorrect: boolean; // Whether the user's attempt was correct
-    attemptDate: string; // DateTime in ISO string format
+    solvedAt: string; // DateTime in ISO string format
     status: "SOLVED" | "UNSOLVED" | "ATTEMPTED"; // Status of the attempt
   }
   

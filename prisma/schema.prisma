@@ -70,8 +70,8 @@
     isCorrect       Boolean  @default(false)
     solvedAt        DateTime @default(now())
     status          AttemptStatus @default(UNSOLVED)
-    user            User      @relation(fields: [userId], references: [id])  //onDelete: Cascade ADD THIS
-    question        Question  @relation(fields: [questionId], references: [id])  //onDelete: Cascade ADD THIS
+    user            User      @relation(fields: [userId], references: [id],onDelete: Cascade)  //onDelete: Cascade ADD THIS
+    question        Question  @relation(fields: [questionId], references: [id],onDelete: Cascade)  //onDelete: Cascade ADD THIS
 
     @@id([userId, questionId, solvedAt])
   }

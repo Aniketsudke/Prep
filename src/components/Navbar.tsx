@@ -25,8 +25,7 @@ const Navbar = () => {
           href="#"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <Package2 className="h-7 w-7" />
-          <span className="sr-only">Acme Inc</span>
+          <Image src={'/logo.svg'} alt="Acme Inc" width={250} height={250} />
         </Link>
         <Link
           href="/"
@@ -41,10 +40,10 @@ const Navbar = () => {
           Questions
         </Link>
         <Link
-          href="#"
+          href="/challenge"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          Contest
+          Challenge
         </Link>
       </nav>
       <Sheet>
@@ -60,8 +59,7 @@ const Navbar = () => {
               href="#"
               className="flex items-center gap-2 text-lg font-semibold"
             >
-              <Package2 className="h-6 w-6" />
-              <span className="sr-only">Acme Inc</span>
+              <Image src={'/logo.svg'} alt="Acme Inc" width={60} height={60} />
             </Link>
             <Link
               href="/"
@@ -76,10 +74,10 @@ const Navbar = () => {
               Question
             </Link>
             <Link
-              href="#"
+              href="challenge"
               className="text-muted-foreground hover:text-foreground"
             >
-              Contest
+              Challenge
             </Link>
 
             <Link href="#" className="hover:text-foreground">

@@ -1,3 +1,4 @@
+"use client"; 
 import { CopyIcon } from "@radix-ui/react-icons"
 
 import { Button } from "@/components/ui/button"
@@ -13,10 +14,19 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useState } from "react";
 
 const  InviteFriend = () => {
+  const [link] = useState("https://localhost:3000/challenge/8sg244d");
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(link);
+  }
+  
+
+
   return (
-    <Dialog>
+    <Dialog >
       <DialogTrigger asChild>
         <button className="relative bg-yellow-600 hover:bg-yellow-500 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105 overflow-hidden group">
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 transform -translate-x-full group-hover:translate-x-full"></span>
@@ -37,11 +47,14 @@ const  InviteFriend = () => {
             </Label>
             <Input
               id="link"
-              defaultValue="https://localhost:3000/challenge/8sg244d"
+              defaultValue={link}
+              
               readOnly
             />
           </div>
-          <Button type="submit" size="sm" className="px-3">
+          <Button type="submit" size="sm" className="px-3"
+          onClick={handleCopy}
+          >
             <span className="sr-only">Copy</span>
             <CopyIcon className="h-4 w-4" />
           </Button>

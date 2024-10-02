@@ -39,11 +39,11 @@ const ChallengePage = () => {
 
 const UserProfile = () => {
   return (
-    <div className="   flex justify-between md:flex-col rounded-lg ">
+    <div className="   flex justify-between p-2 md:flex-col rounded-lg ">
       <div className="flex flex-row md:justify-between  ">
-        <div >
+        <div className="flex flex-col justify-center items-center">
           <h2 className="text-base sm:text-lg font-semibold">Aniket Sudke</h2>
-          <p className="text-gray-400 text-sm sm:text-base">@aniketsudke</p>
+          <p className="text-gray-400 text-sm sm:text-base ">@aniketsudke</p>
         </div>
         <Link className="hidden" href={`/`}>
           <Link2 className="text-yellow-500 hover:text-yellow-400 md:mt-0.5 mt-1 size-4 md:size-7" />

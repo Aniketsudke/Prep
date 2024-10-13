@@ -14,26 +14,64 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useState } from "react";
+import {  useEffect, useState } from "react";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const  InviteFriend = () => {
-  const [link] = useState("https://localhost:3000/challenge/8sg244d");
+  const challengeId = uuidv4();
+  const router = useRouter();
+  const { data: session,status } = useSession();
+  
+  const [challengeLink] = useState<string>(`${window.location.origin}/challenge/${challengeId}`);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(link);
-  }
   
 
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      // Redirect to the sign-in page if the user is not logged in
+      router.push('/sign-in');
+    }
+  }, [status && router && session]);
+
+  if(status === 'loading') return null;
+  
+  
+
+
+ 
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(challengeLink);
+  }
+
+  const handleInvite = async () => {
+    const res = await axios.post("/api/challenge/invite", { user1Id: session.user.id,challengeId, questions: [] });
+    // setIsOpen(true);
+    if (res.status === 200) {
+      router.push(`/challenge/${challengeId}`);
+      
+      return;
+    }
+      router.push(`/challenge`);
+      return;
+  };
+  
+  // open={isOpen} onOpenChange={setIsOpen}
 
   return (
     <Dialog >
       <DialogTrigger asChild>
-        <button className="relative bg-yellow-600 hover:bg-yellow-500 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105 overflow-hidden group">
+        <Button className="relative bg-yellow-600 hover:bg-yellow-500 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105 overflow-hidden group"
+        
+        >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 transform -translate-x-full group-hover:translate-x-full"></span>
                 <span className="relative z-10">Invite a Friend</span>
-        </button>
+        </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md bg-white">
+      <DialogContent className="sm:max-w-md bg-white" >
         <DialogHeader>
           <DialogTitle>Share link</DialogTitle>
           <DialogDescription>
@@ -47,7 +85,7 @@ const  InviteFriend = () => {
             </Label>
             <Input
               id="link"
-              defaultValue={link}
+              defaultValue={challengeLink}
               
               readOnly
             />
@@ -65,7 +103,8 @@ const  InviteFriend = () => {
               Close
             </Button>
           </DialogClose>
-          <Button type="submit"  >
+          <Button type="submit" 
+          onClick={()=>handleInvite()} >
                 Start Challenge
             </Button>
         </DialogFooter>

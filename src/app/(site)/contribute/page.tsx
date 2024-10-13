@@ -35,7 +35,7 @@ const Contribute = () => {
 
   useEffect(() => {
     // Redirect to home page if session is loaded and user is not admin
-    if (status === "authenticated" && !session?.user?.isAdmin) {
+    if (status === "authenticated" && session?.user?.Role !== "ADMIN") {
       router.replace("/"); // Redirect to home page
     }
   }, [session, status, router]);
@@ -48,6 +48,7 @@ const Contribute = () => {
   const [difficulty, setDifficulty] = useState("");
   const [subject, setSubject] = useState("");
   const [std, setStd] = useState("");
+  const [tag, setTag] = useState("");
   const [numericalAnswer, setNumericalAnswer] = useState<number | undefined>(
     undefined
   );
@@ -81,6 +82,7 @@ const Contribute = () => {
     std,
     difficulty,
     subject,
+    tag,
     content,
     options,
     numericalAnswer,
@@ -97,7 +99,7 @@ const Contribute = () => {
       throw new Error("Failed to submit the form");
     }
   };
-  if (status === "authenticated" && session?.user?.isAdmin) {
+  if (status === "authenticated" && session?.user?.Role === "ADMIN") {
 
   return (
     <div className="max-w-screen-2xl mx-auto    p-5">
@@ -178,6 +180,20 @@ const Contribute = () => {
                 />
               </div>
             </div>
+            <div className="flex flex-wrap   px-3 w-full md:w-1/2">
+            <label
+                  className="block  tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="grid-last-name"
+                >
+                  Tags
+                </label>
+                <SelectFilter
+                  width={"full"}
+                  placeholder="Tags"
+                  selectName={["PYQ2019", "PYQ2020", "PYQ2021"]}
+                  onChange={(value: string[]) => setTag(value[0])}
+                />
+            </div>  
             <div className="w-full m-2">
               <Label htmlFor="grid-title">Question</Label>
               <Textarea

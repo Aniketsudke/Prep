@@ -18,7 +18,13 @@ const QuestionPage = ({ params }: { params: { slug: string } }) => {
       return data;
     },
   });
-
+  const handleAttempt = async(attemptData:any) => {
+    try {
+       await axios.post('/api/attempts', attemptData)
+    } catch (error) {
+      console.error(error);
+    }
+  }
   
 
   return (
@@ -28,7 +34,9 @@ const QuestionPage = ({ params }: { params: { slug: string } }) => {
         isLoading ? (
           <QuestionUISkeleton />
         ) : (
-          <QuestionUI question={question} />
+          <QuestionUI question={question}
+          handleAttempt={handleAttempt} 
+           />
         )
 
       }

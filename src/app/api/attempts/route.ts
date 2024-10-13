@@ -4,11 +4,9 @@ import { authOptions } from "../auth/[...nextauth]/options";
 
 export async function POST(req:Request){
     const body = await req.json();
-    const {questionId,userId,isCorrect,status } = body;
-    console.log(questionId,isCorrect,status);
+    const {questionId,userId,isCorrect } = body;
     try {
         const session = await getServerSession(authOptions);
-        console.log(session);
         if(!session){
             return new Response("Unauthorized", { status: 401 });
         }
@@ -17,7 +15,7 @@ export async function POST(req:Request){
                 questionId,
                 userId,
                 isCorrect,
-                status
+                
             }
         });
         return new Response(JSON.stringify(attempt), { status: 200 });

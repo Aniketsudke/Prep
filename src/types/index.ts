@@ -50,6 +50,7 @@ export interface Userprops {
     std: string; // Class level (e.g., '11th', '12th', 'Foundation')
     difficulty: string; // Difficulty level (e.g., 'easy', 'medium', 'hard')
     subject: string; // List of subjects related to the question
+    tag?: string; // List of tags related to the question
     content: string; // Content of the question
     options?: Option[]; // Options for MCQ and MultipleOptionCorrect types
     numericalAnswer?: number; // Numerical answer for Numerical type questions

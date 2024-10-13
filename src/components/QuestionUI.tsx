@@ -22,7 +22,7 @@ const TF = [
 
 
 
-const QuestionUI = ({question}) => {
+const QuestionUI = ({question,handleAttempt}) => {
   const { data: session } = useSession();
   const router = useRouter();
   const { toast } = useToast()
@@ -30,10 +30,11 @@ const QuestionUI = ({question}) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
 
-  console.log("QuestionUI", question.options)
-  console.log("QuestionUI", selectedOptions)
-  console.log("QuestionUI", selectedOption)
+  
   const checkIfSelectedIsCorrect = () => {
+    if (!question || !question.options) {
+      return false; // Safeguard against undefined question or options
+    }
     if (isMultiple) {
       if (selectedOptions.length === 0) {
         return false; // No selection
@@ -55,14 +56,17 @@ const QuestionUI = ({question}) => {
       
       return question.options[selectedOption].isCorrect;
     }
+    
   };
   
+  
   useEffect(() => {
-  const correctOptionsCount = question.options.filter(option => option.isCorrect).length;
-  if (correctOptionsCount > 1) {
-    setIsMultiple(true);
-  }
-}, [question.options]);
+    if (!question || !question.options) return;
+    const correctOptionsCount = question.options.filter(option => option.isCorrect).length;
+    if (correctOptionsCount > 1) {
+      setIsMultiple(true);
+    }
+  }, [question]);
 
   const handleOptionChange = (content: number) => {
     if (isMultiple) {
@@ -89,7 +93,7 @@ const QuestionUI = ({question}) => {
       questionId: question.id, // Replace with actual question ID
       userId: session?.user?.id, // Replace with actual user ID
       isCorrect: isCorrect,
-      status: isCorrect ? 'SOLVED' : 'UNSOLVED', // Optionally, you can store status
+      
     };
     if(isCorrect){
       toast({
@@ -104,15 +108,15 @@ const QuestionUI = ({question}) => {
         variant: "destructive",
     });
   }
-    
-   try{
 
-    const response = await axios.post('/api/attempts', attemptData)
-    console.log("Response", response)
-       }
-  catch(error){
-      console.log("Error", error)
-    }
+  handleAttempt(attemptData);
+    
+  //  try{
+  //     await axios.post('/api/attempts', attemptData)
+  //    }
+  // catch(error){
+  //     console.log("Error", error)
+  //   }
 
 
 

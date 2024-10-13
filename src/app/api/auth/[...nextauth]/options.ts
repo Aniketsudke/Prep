@@ -119,7 +119,7 @@ export const authOptions: NextAuthOptions = {
                 token.username = user.username;
                 token.email = user.email
                 token.image = user.image
-                token.isAdmin = user.isAdmin
+                token.Role = user.Role
             }
             return token
           },
@@ -129,7 +129,7 @@ export const authOptions: NextAuthOptions = {
                 session.user.username = token.username;
                 session.user.email = token.email;
                 session.user.image = token.picture;
-                session.user.isAdmin = token.isAdmin;
+                session.user.Role = token.Role;
             }
 
             const userData = await prisma.user.findUnique({
@@ -140,7 +140,7 @@ export const authOptions: NextAuthOptions = {
                 session.user.username = userData.username || session.user.username;
                 session.user.image = userData.avatar || session.user.image;
                 session.user.createdAt = userData.createdAt;
-                session.user.isAdmin = userData.isAdmin;
+                session.user.Role = userData.Role;
             }
             return session
           },

@@ -5,6 +5,7 @@ import { TrendingUp, Link2 } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import InviteFriend from "@/components/challenge/inviteFriend";
+import { Button } from "@/components/ui/button";
 
 
 
@@ -85,10 +86,10 @@ const Banner = () => {
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
           {/* Join Challenge Button */}
-          <button className="relative bg-yellow-700 hover:bg-yellow-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105 overflow-hidden group">
+          <Button className="relative bg-yellow-700 hover:bg-yellow-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105 overflow-hidden group" >
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 transform -translate-x-full group-hover:translate-x-full"></span>
-            <span className="relative z-10">Join Challenge</span>
-          </button>
+            <Link href={'/comingsoon'} className="relative z-10" >Join Challenge </Link>
+          </Button>
 
           {/* Invite a Friend Button */}
          <InviteFriend />

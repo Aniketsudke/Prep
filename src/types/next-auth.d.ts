@@ -6,7 +6,7 @@ declare module 'next-auth' {
         id: string
         username?: string
         createdAt?: string
-        isAdmin?: boolean
+        Role?: String
         
     }
     interface Session {
@@ -14,7 +14,7 @@ declare module 'next-auth' {
             id: string
             username?: string
             createdAt?: DateTime
-            isAdmin?: boolean
+            Role?: String
         } & DefaultSession['user']
     }
 }
@@ -24,6 +24,6 @@ declare module 'next-auth/jwt' {
         id: string
         username?: string
         createdAt?: string
-        isAdmin?: boolean
+        Role?: String
     }
 }

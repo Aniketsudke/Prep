@@ -18,8 +18,9 @@ export async function GET() {
           
         });
         const questionSet = questions.map((question) => {
-          const hasAttempt = question.attempts.length > 0;
-          const attemptStatus = hasAttempt ? question.attempts[0].status : 'UNSOLVED';
+          // const hasAttempt = question.attempts.length > 0;
+          // const attemptStatus = hasAttempt ? question.attempts[0].status : 'UNSOLVED';
+          //! This is a bug, it should be  
     
           return {
             id: question.id,
@@ -29,7 +30,7 @@ export async function GET() {
             subject: question.subject,
             class: question.class,
             accuracy: question.accuracy,
-            Status: attemptStatus,
+            Status: "UNSOLVED",
           };
         });
         return Response.json(questionSet, { status: 200 });
@@ -65,6 +66,7 @@ export async function POST(req: Request) {
           topic: formState.topicTitle,
           subject: formState.subject,
           class: formState.std,
+          tag: formState.tag,
           isnumerical: formState.numericalAnswer,
           isTrueFalse: formState.isTrueFalse,
           options: {

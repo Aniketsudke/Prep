@@ -20,6 +20,7 @@ import { QTableRowSkeleton } from "@/components/questions/QTableRowSkeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { QuestionTableProps } from "@/types";
+import Link from "next/link";
 
 
 
@@ -149,8 +150,8 @@ const Questionset = () => {
                           <TableRow>
                             <TableHead>Status</TableHead>
                             <TableHead className="hidden md:table-cell">Class</TableHead>
-                            <TableHead>Difficulty</TableHead>
                             <TableHead>Topic</TableHead>
+                            <TableHead>Difficulty</TableHead>
                             <TableHead>Accurcy</TableHead>
                             <TableHead className="hidden md:table-cell">Subject</TableHead>
                             
@@ -160,6 +161,7 @@ const Questionset = () => {
                           {questions
                             ? questions.map((question: QuestionTableProps) => {
                                 return (
+                                  
                                   <QTableRow
                                     key={question.id}
                                     problem={question}

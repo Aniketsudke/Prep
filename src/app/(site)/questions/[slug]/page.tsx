@@ -6,7 +6,12 @@ import { Button } from '@/components/ui/button';
 import { Shuffle } from 'lucide-react';
 import QuestionUISkeleton from '@/components/QuestionUISkeleton';
 
-
+interface attempDataProps {
+  questionId: string;
+  userId: string;
+  selectedOptions: number[];
+  isCorrect: boolean;
+}
 
 const QuestionPage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
@@ -18,7 +23,7 @@ const QuestionPage = ({ params }: { params: { slug: string } }) => {
       return data;
     },
   });
-  const handleAttempt = async(attemptData:any) => {
+  const handleAttempt = async(attemptData:attempDataProps) => {
     try {
        await axios.post('/api/attempts', attemptData)
     } catch (error) {

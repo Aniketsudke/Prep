@@ -1,7 +1,6 @@
 "use client";
 
 import QuestionUI from "@/components/QuestionUI";
-import { pusherClient } from "@/lib/pusher";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";

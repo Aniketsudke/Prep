@@ -6,6 +6,13 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {  useEffect, useState } from "react";
 
+interface attempDataProps {
+  questionId: string;
+  userId: string;
+  selectedOptions: number[];
+  isCorrect: boolean;
+}
+
 const questions = [
   {
     "id": "fb085ef3-842b-46c3-a5a2-533d5f7f372c",
@@ -155,7 +162,7 @@ const ChallengePage = ({params}:{params:{challengeId:string}}) => {
  const [attempts, setAttempts] = useState([]);
  const question = questions[currentQuestionIndex];
 
- const handleAttempt = async(attemptData:any) => {
+ const handleAttempt = async(attemptData:attempDataProps) => {
     console.log(attemptData)
   try {
      await axios.post('/api/attempts', attemptData);

@@ -5,7 +5,6 @@ import { Button } from './ui/button'
 import MarkdownRenderer from '@/lib/MarkdownRenderer'
 import { Input } from './ui/input';
 import Select from './Select';
-import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';

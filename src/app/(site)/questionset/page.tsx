@@ -20,7 +20,6 @@ import { QTableRowSkeleton } from "@/components/questions/QTableRowSkeleton";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { QuestionTableProps } from "@/types";
-import Link from "next/link";
 
 
 

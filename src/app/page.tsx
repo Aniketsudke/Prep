@@ -189,7 +189,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                    <img className="w-full" src="https://d33wubrfki0l68.cloudfront.net/d6f1462500f7670e0db6b76b35054a081679a5a0/0ce15/images/hero/5.1/illustration.png" alt="" />
+                    <Image className="w-full" src="https://d33wubrfki0l68.cloudfront.net/d6f1462500f7670e0db6b76b35054a081679a5a0/0ce15/images/hero/5.1/illustration.png" alt="" />
                 </div>
             </div>
         </div>
@@ -264,7 +264,7 @@ export default function Home() {
             <div className="overflow-hidden bg-white rounded-md">
                 <div className="px-5 py-6">
                     <div className="flex items-center justify-between">
-                        <img className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-1.jpg" alt="" />
+                        <Image className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-1.jpg" alt="" />
                         <div className="min-w-0 ml-3 mr-auto">
                             <p className="text-base font-semibold text-black truncate">Darrell Steward</p>
                             <p className="text-sm text-gray-600 truncate">@darrels</p>
@@ -289,7 +289,7 @@ export default function Home() {
             <div className="overflow-hidden bg-white rounded-md">
                 <div className="px-5 py-6">
                     <div className="flex items-center justify-between">
-                        <img className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-2.jpg" alt="" />
+                        <Image className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-2.jpg" alt="" />
                         <div className="min-w-0 ml-3 mr-auto">
                             <p className="text-base font-semibold text-black truncate">Leslie Alexander</p>
                             <p className="text-sm text-gray-600 truncate">@lesslie</p>
@@ -314,7 +314,7 @@ export default function Home() {
             <div className="overflow-hidden bg-white rounded-md">
                 <div className="px-5 py-6">
                     <div className="flex items-center justify-between">
-                        <img className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-3.jpg" alt="" />
+                        <Image className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-3.jpg" alt="" />
                         <div className="min-w-0 ml-3 mr-auto">
                             <p className="text-base font-semibold text-black truncate">Jenny Wilson</p>
                             <p className="text-sm text-gray-600 truncate">@jennywilson</p>
@@ -339,7 +339,7 @@ export default function Home() {
             <div className="overflow-hidden bg-white rounded-md">
                 <div className="px-5 py-6">
                     <div className="flex items-center justify-between">
-                        <img className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-4.jpg" alt="" />
+                        <Image className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-4.jpg" alt="" />
                         <div className="min-w-0 ml-3 mr-auto">
                             <p className="text-base font-semibold text-black truncate">Kristin Watson</p>
                             <p className="text-sm text-gray-600 truncate">@kristinwatson2</p>
@@ -364,7 +364,7 @@ export default function Home() {
             <div className="overflow-hidden bg-white rounded-md">
                 <div className="px-5 py-6">
                     <div className="flex items-center justify-between">
-                        <img className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-5.jpg" alt="" />
+                        <Image className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-5.jpg" alt="" />
                         <div className="min-w-0 ml-3 mr-auto">
                             <p className="text-base font-semibold text-black truncate">Guy Hawkins</p>
                             <p className="text-sm text-gray-600 truncate">@jennywilson</p>
@@ -389,7 +389,7 @@ export default function Home() {
             <div className="overflow-hidden bg-white rounded-md">
                 <div className="px-5 py-6">
                     <div className="flex items-center justify-between">
-                        <img className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-6.jpg" alt="" />
+                        <Image className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-6.jpg" alt="" />
                         <div className="min-w-0 ml-3 mr-auto">
                             <p className="text-base font-semibold text-black truncate">Marvin McKinney</p>
                             <p className="text-sm text-gray-600 truncate">@darrels</p>
@@ -414,7 +414,7 @@ export default function Home() {
             <div className="overflow-hidden bg-white rounded-md">
                 <div className="px-5 py-6">
                     <div className="flex items-center justify-between">
-                        <img className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-7.jpg" alt="" />
+                        <Image className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-7.jpg" alt="" />
                         <div className="min-w-0 ml-3 mr-auto">
                             <p className="text-base font-semibold text-black truncate">Annette Black</p>
                             <p className="text-sm text-gray-600 truncate">@darrels</p>
@@ -439,7 +439,7 @@ export default function Home() {
             <div className="overflow-hidden bg-white rounded-md">
                 <div className="px-5 py-6">
                     <div className="flex items-center justify-between">
-                        <img className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-8.jpg" alt="" />
+                        <Image className="flex-shrink-0 object-cover w-10 h-10 rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/7/avatar-8.jpg" alt="" />
                         <div className="min-w-0 ml-3 mr-auto">
                             <p className="text-base font-semibold text-black truncate">Floyd Miles</p>
                             <p className="text-sm text-gray-600 truncate">@darrels</p>
@@ -540,7 +540,7 @@ export default function Home() {
     <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
             <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
-                <img className="w-auto h-9" src="https://cdn.rareblocks.xyz/collection/celebration/images/logo.svg" alt="" />
+                <Image className="w-auto h-9" src="https://cdn.rareblocks.xyz/collection/celebration/images/logo.svg" alt="" />
 
                 <p className="text-base leading-relaxed text-gray-600 mt-7">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
 

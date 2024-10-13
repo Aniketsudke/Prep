@@ -9,6 +9,7 @@ export async function POST(req:Request) {
              challengeId
         },
     });
+    console.log(challenge);
     // if (!challenge) {
     //     return Response.json({ msg: "Challenge not found" },{status:404});
     // }
